@@ -82,7 +82,7 @@ switch( ingreso){
             
             
                     var datos =  [ { "Text" : usuario2 } ] ;
-                    // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
+                    // Guardamos la dirección del aa servicio (endpoint, punto de acceso) en una variable
                     var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es' ;
                 
                     // Con axios realizamos la petición POST

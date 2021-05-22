@@ -23,7 +23,7 @@ var traUserEs;
                             'Content-Type' : 'application / json'  
                              }
                             } )
-                            // Accedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
+                            // Aaccedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
                             .then (  respuesta  => {
                                 traUserEs = respuesta.data[0].translations[0].text
                                      console.log ( palabraClave + traUserEs );

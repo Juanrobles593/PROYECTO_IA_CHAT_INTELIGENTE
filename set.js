@@ -9,4 +9,4 @@ console.log("dos")
             setTimeout( function(){
                 var usuario2;
                 return ( 
-                    usuario2 = prompt( palabraIdea +" "))},3 * 1000);
+                    usuario2 = prompt( palabraIdeaa +" "))},3 * 1000);
