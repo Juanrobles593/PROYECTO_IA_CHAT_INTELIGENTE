@@ -9,12 +9,13 @@ var ingreso = prompt("");
 // TRANSFORMAMOS A MAYUSCULAS PARA REDUCIR EL NUMERO DE CASOS POSIBLES, YA QUE TODOS LOS CASOS ESTARAN EN  MINUSCULAS
 ingreso = ingreso.toLowerCase();
 
+// SERA LA VARIABLE QUE VERA JUNTO A LO QUE ESCRIBA A PERSONA 2 
 var palabraIdea = "";
-                // sera la palabra que vera juto con la traducion a su idioma de las palabras de la otra persona, QUE SIGNIFICRA "HA DICHO"
+// sera la palabra que vera juto con la traducion a su idioma de las palabras de la otra persona, QUE SIGNIFICRA "HA DICHO"
 var resPalabraIdea = "";
 
 
-// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA AS QUE ESO 
+// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA MAS QUE ESO 
 
 // GUARDAMOS TODO EL PROCESO DE TRADUCCION DE LA PRIMERA PERSON AN EUNA FUNCION PARA ASI TENERLA EN UN AMBITO GLOBAL 
                 // Y DESPUES UTILIZARLA EN TODOS LOS CASO DE TODOS LOS IDIOMAS se hara lomismo con la segunda funcion
@@ -60,7 +61,7 @@ function traductor( callback){  // utilizo un CALLBACK para controlar la asincro
     //Guardamos el proceso de traduccion en una funcion global y declararla en cuaquier momento             
     function traductor2(){
     // luego el usuario 2 escribe en su idioma
-    var usuario2 = prompt("WRITE: ");
+    var usuario2 = prompt(palabraIdea + ": ");
     //esta variable guardara  la respuesta
     var traUser2 = "" ;
 
@@ -83,7 +84,7 @@ function traductor( callback){  // utilizo un CALLBACK para controlar la asincro
             // Accedemos al atributo que contiene el texto traducido
             .then (  respuesta  =>   { 
             traUser2 =   respuesta.data[0].translations[0].text  
-            console.log( "DIJO: " + traUser2);
+            console.log( "  DIJO: " + traUser2);
             traductor(traductor2);
              } )
             // cachamos el error en caso de haberlo
@@ -116,7 +117,7 @@ switch( ingreso){
                 
                 idioma = 'en' ;
                 //sera la palabra que aparecera y comprenda la otra persoa que debe escribir a continuacion, SIGNIFICARA "ESCRIBE"
-                palabraIdea = "WRITE: "
+                palabraIdea = "  WRITE: "
                 // sera la palabra que vera juto con la traducion a su idioma de las palabras de la otra persona, QUE SIGNIFICRA "HA DICHO"
                 resPalabraIdea = "HAS SAID: "
                 
@@ -127,21 +128,81 @@ switch( ingreso){
                 
                 
                  // caso idioma " Aleman "
-                 case "aleman":
-                    case "alemán" :
+                case "aleman":
+                case "alemán" :
                     
                     idioma = 'de';
-                    palabraIdea = "SCHREIBEN: ";
+                    palabraIdea = "  SCHREIBEN: ";
                     resPalabraIdea = "HAT GESAGT: ";
     
                                 traductor(traductor2);
-                    break;
+                    break
+
+                // caso idioma " CANADIENSE O FRANCES CANADIENSE", LOS SEPARE PORQQUE SI ALGUIEN BUSCA FRANCES BUENO SE HA REFERIR al de FRANCIA
+                case "canadiense":
+                case "frances (canada)" :
+                case "francés (canadá)" :
+                case "frances canadiense" :
+                case "francés canadiense" :
+                    
+                idioma = 'fr-ca'
+                    palabraIdea = "DICÉCRIT: ";
+                    resPalabraIdea = "HA DCHO: ";
+
+                            traductor(traductor2);
+                break;
+
+                // caso idioma " CHINO ( SIMPLIFICADO O TRADICIONAL ), SE UTILIZA EL IF PORQUE NO ESPECIFICA QUE TIPO DE CHINO "
+                case "chino":
+                                    
+                        var typeCh = prompt("¿chino tradicional o simplificado (Espesifica el tipo a continuacion): ");
+                        typePt = typeCh.toLowerCase()
+                        if (typeCh == "simplificado"){
+                        
+                        idioma = 'zh-Hans'
+                        palabraIdea = "  写: ";
+                        resPalabraIdea = "他说: ";
+        
+                                    traductor(traductor2);
+                        
+                        }else if (typePt == "portugal" ){
+                            
+                            idioma = 'zh-Hant'
+                        palabraIdea = "  寫： ";
+                        resPalabraIdea = "他說：";
+                                     
+                                    traductor(traductor2);
+                        }
+
+                // caso idioma "CHINO SIMPLIFCADO "
+                case "chino simplificado":
+                case "chino-simplificado":
+                case "chino (simplificado)" :
+
+                idioma = 'zh-Hans'
+                palabraIdea = "  写: ";
+                resPalabraIdea = "他说: ";
+    
+                                traductor(traductor2);
+                break;
+                
+                // caso idioma "CHINO tradicional "
+                case "chino tradicional" :
+                case "chino tradicional" :
+                case "chino (tradicional)" :
+                    
+                idioma = 'zh-Hant'
+                palabraIdea = "  寫： ";
+                resPalabraIdea = "他說：";
+                                 
+                                traductor(traductor2);
+                break;
 
                 // caso idioma " CROATA "
                 case "croata": 
                 
                 idioma = 'hr'
-                palabraIdea = "PISATI: ";
+                palabraIdea = "  PISATI: ";
                 resPalabraIdea = "JE REKAO: ";
 
                             traductor(traductor2);
@@ -152,7 +213,7 @@ switch( ingreso){
                 case "frances" :
                 
                 idioma = 'fr' ;
-                palabraIdea = "ÉCRIVE: ";
+                palabraIdea = "  ÉCRIVE: ";
                 resPalabraIdea = "IL A DIT: ";
 
                             traductor(traductor2);
@@ -163,8 +224,19 @@ switch( ingreso){
                 case "greco" :
 
                 idioma = 'el'
-                palabraIdea = "ΓΡΑΦΩ: ";
+                palabraIdea = "  ΓΡΑΦΩ: ";
                 resPalabraIdea = "ΕΧΕΙ ΕΞΕΤΑΣΗ: ";
+
+                            traductor(traductor2);
+                break;
+
+                // caso idioma " HOLANDES "
+                case "holandes":
+                case "holandés" :
+                
+                idioma = 'nl'
+                palabraIdea = "  SCHRIJF: ";
+                resPalabraIdea = "HIJ ZEI: ";
 
                             traductor(traductor2);
                 break;
@@ -174,8 +246,18 @@ switch( ingreso){
                 case "italino" :
 
                 idioma = 'it'
-                palabraIdea = "SCRIVI: ";
+                palabraIdea = "  SCRIVI: ";
                 resPalabraIdea = "HA DETTO: ";
+
+                            traductor(traductor2);
+                break;
+
+                // caso idioma " NORUEGO "
+                case "noruego":
+
+                idioma = 'nb'
+                palabraIdea = "  SKRIVE: ";
+                resPalabraIdea = "HAR SAGT: ";
 
                             traductor(traductor2);
                 break;
@@ -188,30 +270,56 @@ switch( ingreso){
                         typePt = typePt.toLowerCase()
                         if (typePt == "brazil"){
                         
-                        idioma = 'pt'
-                        palabraIdea = " ESCREVE: ";
-                        resPalabraIdea = " DISSE: ";
+                            idioma = 'pt'
+                            palabraIdea = "  ESCREVE: ";
+                            resPalabraIdea = "DISSE: ";
         
                                     traductor(traductor2);
                         
                         }else if (typePt == "portugal" ){
                             
                             idioma = 'pt-pt'
-                        palabraIdea = " ESCREVE: ";
-                        resPalabraIdea = " DISSE: ";
+                            palabraIdea = "  ESCREVE: ";
+                            resPalabraIdea = "DISSE: ";
                                      
                                     traductor(traductor2);
                         }
-                
+                break;
 
-                
+                case "portugues brazil":
+                case  "portugés de brazil":
+                case  "portugues (brazil)": 
+                case  "portugués (brazil)": 
+                case  "portugues(brazil)" : 
+                case  "portugués(brazil)" :
+                 
+                    idioma = 'pt'
+                    palabraIdea = "  ESCREVE: ";
+                    resPalabraIdea = "DISSE: ";
+
+                            traductor(traductor2);
                 break;
                 
+                case "portugues portugal":
+                case  "portugés de portugal":
+                case  "portugues (portugal)": 
+                case  "portugués (portugal)": 
+                case  "portugues(portugal)" : 
+                case  "portugués(portugal)" :
+                    
+                    idioma = 'pt-pt'
+                    palabraIdea = "  ESCREVE: ";
+                    resPalabraIdea = "DISSE: ";
+    
+                                traductor(traductor2);
+                    break;
+
                 // caso idioma " RUSO "
                 case "ruso":
-
-                palabraIdea = "НАПИСАТЬ: ";
-                resPalabraIdea = "ОН СКАЗАЛ: ";
+                    
+                    idioma = 'ru'
+                    palabraIdea = "  НАПИСАТЬ: ";
+                    resPalabraIdea = "ОН СКАЗАЛ: ";
 
                             traductor(traductor2);
                 break;
@@ -219,43 +327,20 @@ switch( ingreso){
                 // caso idioma " UCRANIO "
                 case "ucranio":
                 case "ucraniano" :
-
-                palabraIdea = "НАПИСАТИ: ";
-                resPalabraIdea = "СКАЗАЛ: ";
+                    
+                    idioma = 'uk'
+                    palabraIdea = "  НАПИСАТИ: ";
+                    resPalabraIdea = "СКАЗАЛ: ";
 
                             traductor(traductor2);
                 break;
 
-
-
-               
-
+                // caso idioma " SUECO "
+                case "sueco":
                 
-
-                // caso idioma " "
-                case "":
-                case "" :
-
-                palabraIdea = "";
-                resPalabraIdea = "";
-
-                            traductor(traductor2);
-                break;
-
-                // caso idioma " "
-                case "":
-                case "" :
-
-                palabraIdea = "";
-                resPalabraIdea = "";
-
-                            traductor(traductor2);
-                break;
-
-                case "":
-                idioma = ''
-                palabraIdea = "ESCREVE: ";
-                resPalabraIdea = "DISSE: ";
+                idioma = 'sv'
+                palabraIdea = "  ESCRIVER: ";
+                resPalabraIdea = "HAR SAGT: ";
 
                             traductor(traductor2);
                 break;
