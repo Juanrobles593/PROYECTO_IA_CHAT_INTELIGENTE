@@ -2,7 +2,7 @@ const prompt = require ('prompt-sync')();
 const axios = require ('axios');
 
 // FRASES DE BIENENIDA
-console.log( " HOLA, SOY TU ASISTENTE PERSONAL ");
+console.log( " HOLA, SOY TU ASISTENTE DE TRADUCCION PERSONAL ");
 console.log( " ¿EN QUE PUEDO AYUDARTE? ");
 // SE PIDE INGRESAR LA PETICION DEL USUARIO QUE SE COMPARARA EN E SWITCH
 var ingreso = prompt("");
@@ -10,127 +10,6 @@ var ingreso = prompt("");
 ingreso = ingreso.toLowerCase();
 
 
-// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA MAS QUE ESO 
-
-// SERA LA VARIABLE QUE VERA JUNTO A LO QUE ESCRIBA A PERSONA 2 
-var palabraIdea = "";
-// sera la palabra que vera juto con la traducion a su idioma de las palabras de la otra persona, QUE SIGNIFICRA "HA DICHO"
-var resPalabraIdea = "";
-// GUARDAMOS TODO EL PROCESO DE TRADUCCION DE LA PRIMERA PERSON AN EUNA FUNCION PARA ASI TENERLA EN UN AMBITO GLOBAL 
-                // Y DESPUES UTILIZARLA EN TODOS LOS CASO DE TODOS LOS IDIOMAS se hara lomismo con la segunda funcion
-
-function traductor( callback){  // utilizo un CALLBACK para controlar la asincronia y evitar que una funcion se ejecute mientrs la otra se esta ejeutando
-    //esta variable GUARDARA las palabras que la persona quiere decir
-    var usuario1 = prompt("ESCRIBE: ") ;
-    if(usuario1.toLowerCase() == "cerrar chat" || usuario1.toLowerCase()== "desactivar chat" ){
-        console.log( "CHAT DESACTIVADO, gracias por usar chat inteligente")
-    }
-    else{
-    //esta variable guardara  la respuesta DE LA PERSONA1 En el idioma de la persona2
-    var traUserEs = "";
-    //SE GUARDAN LOS DATO ES DECIR LAS PALABRAS DE LA PERSONA DE HABLA HISPANA
-    var  datos  =  [ { "Text" : usuario1 } ] ;
-    
-    // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
-    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to='+idioma ;
-
-        // Con axios realizamos la petición POST
-     axios.post (  direccion ,  datos , {
-                        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
-                        headers : {
-                         // Valor de la llave del servicio ( la llave es la Luis XD )
-                        'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
-                        // La región donde se encuentra el servicio
-                        'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
-                        'Content-Type' : 'application / json'  
-                         }
-                        } )
-                        // Accedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
-                        .then (  respuesta  =>   {  
-                        //guardamos el resultado en a variable antes declarada
-                        traUserEs =  respuesta.data[0].translations[0].text  
-                             console.log(resPalabraIdea + traUserEs) ;
-                            callback();               
-                            
-                         } )
-                        // cachamos el error en caso de haberlo
-                        .catch (  error  =>  consola.log (  error  ) ) ;
-    
-                        }}
-    //Guardamos el proceso de traduccion en una funcion global y declararla en cuaquier momento             
-    function traductor2(){
-    // luego el usuario 2 escribe en su idioma
-    var usuario2 = prompt(palabraIdea + ": ");
-    //esta variable guardara  la respuesta
-    var traUser2 = "" ;
-
-
-    var datos =  [ { "Text" : usuario2 } ] ;
-    // Guardamos la dirección del aa servicio (endpoint, punto de acceso) en una variable
-    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es' ;
-
-    // Con axios realizamos la petición POST
-    axios . post (  direccion ,  datos  , {
-        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
-        headers : {
-            // Valor de la llave del servicio ( la llave es la Luis XD )
-            'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
-            // La región donde se encuentra el servicio
-            'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
-            'Content-Type' : 'application / json'  
-            }
-            } )
-            // Accedemos al atributo que contiene el texto traducido
-            .then (  respuesta  =>   { 
-            traUser2 =   respuesta.data[0].translations[0].text  
-            console.log( "  DIJO: " + traUser2);
-            traductor(traductor2);
-             } )
-            // cachamos el error en caso de haberlo
-            .catch (  error  =>  console.log (  error  ) ) ;
-            }           
-// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA AS QUE ESO 
-
-
-
-
-// PARA EJECUTAR LA FUNCIONALIDAD DE TRADUCIR TEXTO SE DEBE ESCRIBIR EN CONSOLA "TRADUCCIO DE TEXTO"
-// LA PETICION A TRADUCCION QUEDARA GUARDADA EN UNA FUNCION LA CUAL ESTARA DECLARADA EN UN AMBITO GLOBAL PARA SER USADA EN EL MOMENTO 
-// QUE SEA NECESARIA , Y ES LA DE CONTINUACION:
-
-function traducir(){
-    
-    
-    //esta variable guardara  la respuesta
-    var traduccion = "" ;
-
-
-    var datos =  [ { "Text" : textoTraducir } ] ;
-    // Guardamos la dirección del aa servicio (endpoint, punto de acceso) en una variable
-    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to='+ idiomaTexto ;
-
-    // Con axios realizamos la petición POST
-    axios . post (  direccion ,  datos  , {
-        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
-        headers : {
-            // Valor de la llave del servicio ( la llave es la Luis XD )
-            'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
-            // La región donde se encuentra el servicio
-            'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
-            'Content-Type' : 'application / json'  
-            }
-            } )
-            // Accedemos al atributo que contiene el texto traducido
-            .then (  respuesta  =>   { 
-            traduccion =   respuesta.data[0].translations[0].text 
-            console.log(" EL TEXTO QUE ME PROPORCIONASTES SE TRADUCE A LO SIGUIENTE: ")
-            console.log("          " + traduccion);
-            
-             } )
-            // cachamos el error en caso de haberlo
-            .catch (  error  =>  console.log (  error  ) ) ;
-            } 
-// FIN DE LA FUNCION TRADUCCION
 
 
 switch( ingreso){
@@ -147,7 +26,12 @@ switch( ingreso){
         // se pide ingresar el idioma de la segunda persona 
         var idioma = prompt(" INGRESA EL IDIOMA CON EL QUE HABLA LA OTRA PERSONA: ");
         // tranformamos el idioma a minusculas para compararlo en el switch
-        idioma = idioma.toLowerCase()
+        idioma = idioma.toLowerCase();
+        
+        // SERA LA VARIABLE QUE VERA JUNTO A LO QUE ESCRIBA A PERSONA 2 
+        var palabraIdea = "";
+        // sera la palabra que vera juto con la traducion a su idioma de las palabras de la otra persona, QUE SIGNIFICRA "HA DICHO"
+        var resPalabraIdea = "";
         // este swith verifica si el idioma esta soportado 
             switch( idioma ){
 
@@ -401,9 +285,9 @@ switch( ingreso){
    case "MyQe puedes traducir texto":
    case "traducir texto":
     
-    console.log("ESCRIBE EL TEXTO A TRADUCIR")// se pide el texto que se va a tarucir
+    console.log("CLARO!, ESCRIBE EL TEXTO A TRADUCIR")// se pide el texto que se va a tarucir
     var textoTraducir = prompt( "TEXTO: ");// se guarda el texto en una variable
-    var idiomaTexto = prompt( "A que idioma deseas traducir este texto: " );// se guarad el idioma, 
+    var idiomaTexto = prompt( "A QUE IDIOMA DESEAS TRADUCIR EL TEXTO: " );// se guarad el idioma, 
     idiomaTexto = idiomaTexto.toLowerCase     //lo pasamos a minusculas para luego introducirlo como parametro al switch y compararlo
          
                 switch(idiomaTexto){
@@ -562,7 +446,7 @@ switch( ingreso){
                     case "ucranio":
                     case "ucraniano" :
                         
-                                idioma = 'uk';
+                                idiomaTexto = 'uk';
                                 traducir ();
                     break;
 
@@ -573,17 +457,366 @@ switch( ingreso){
                                 traducir ();
                     break;
 
-                   
+                    default:
+                        console.log("EL IDIOMA NO ESTA SOPORTADO POR ESTE PROGRAMA")
                     
 
+                    }
+
+    break;
+
+    case "puedes transliterar texto":
+    case "transliteracion":
+    case "transliteracion de texto":
+    case "transliterar texto":
+    case "transliterar":    
+    
+    var infoTra = prompt("QUIERES TRADUCIR Y TRANSLITERAR ( tyt ) O SIMPLEMENTE TRANSLITERAR ( trs )? ESPECIFICA A CONTINUACION:")
+    infoTra.toLowerCase() ;
+                    
+                    if( infoTra == "tyt" || infoTra == "traducir y transliterar"){
+                            var textoTra = prompt("INTRODUCE EL TEXTO: ");
+                            var idiomaTra = prompt("A QUE IDIOMA DESEAS TRADUCIR PARA LUEGO TRANSLITERAR: ");
+                            var tradText = "";
+                            var transText = "";
+
+                            switch( idiomaTra ){
+
+                                case "chino":
+                                 var tipeCh = prompt("¿chino tradicional o simplificado? (Espesifica el tipo a continuacion): ");
+                                tipeCh = tipeCh.toLowerCase();
+                                    
+                                    if (tipeCh == "simplificado"){
+                                
+                                            idiomaTra = 'zh-Hans';
+                                            tyt ();
+                                
+                                    }else if (tipeCh == "tradicional" ){
+                                    
+                                            idiomaTra = 'zh-Hant';
+                                            tyt ();
+                                    }
+                                           
+                                break;
+            
+                                // caso idioma "CHINO SIMPLIFCADO "
+                                case "chino simplificado":
+                                case "chino-simplificado":
+                                case "chino (simplificado)" :
+                
+                                            idiomaTra = 'zh-Hans';
+                                            tyt ();
+                                break;
+            
+                                // caso idioma "CHINO tradicional "
+                                case "chino tradicional" :
+                                case "chino tradicional" :
+                                case "chino (tradicional)" :
+                                    
+                                            idiomaTra = 'zh-Hant';
+                                            tyt ();
+                                break;
+
+                                // caso idioma " GRIEGO "
+                                case "griego":
+                                case "greco" :
+    
+                                    idiomaTra = 'el';
+                                    tyt ();
+                                break;
+
+                                //caso idioma " RUSO "
+                                case "ruso":
+                    
+                                    idiomaTra = 'ru';
+                                    tyt ();
+                                
+                                break;
+                                
+                                // caso idioma " UCRANIO "
+                                case "ucranio":
+                                case "ucraniano" :
+                            
+                                    idiomaTra = 'uk';
+                                    tyt ();
+                                
+                                break;
+
+                                default :
+                                console.log("EL IDIOMA NO ESTA SOPORTADO POR EL PROGRAMA, PRUEBA SOLO TRADUCIENDO");
+                                
 
 
+                            }
 
-                }
 
-             
+                    }else if(infoTra == "trs" || infoTra == "transliterar"){
+                        var textoTransliteracion = prompt("INTRODUCE EL TEXTO: ");
+                            var idiomaTrs = prompt("A QUE IDIOMA DESEAS TRANSLITERAR: ");
+                            var transliteracion = "";
+                            var codigoIdioma;
 
+                            switch( idiomaTrs ){
+
+                                case "chino":
+                                 var tipeCh = prompt("¿chino tradicional o simplificado? (Espesifica el tipo a continuacion): ");
+                                tipeCh = tipeCh.toLowerCase()
+                                    
+                                    if (tipeCh == "simplificado"){
+                                
+                                            idiomaTrs = 'Hans';
+                                            codigoIdioma = 'Hans';
+                                            trs ();
+                                
+                                    }else if (tipeCh == "tradicional" ){
+                                    
+                                            idiomaTrs = 'Hant';
+                                            codigoIdioma = 'Hant';
+                                            trs ();
+                                    }
+                                           
+                                break;
+            
+                                // caso idioma "CHINO SIMPLIFCADO "
+                                case "chino simplificado":
+                                case "chino-simplificado":
+                                case "chino (simplificado)" :
+                
+                                            idiomaTrs = 'zh-Hans';
+                                            codigoIdioma = 'Hans';
+                                            trs ();
+                                break;
+            
+                                // caso idioma "CHINO tradicional "
+                                case "chino tradicional" :
+                                case "chino tradicional" :
+                                case "chino (tradicional)" :
+                                    
+                                            idiomaTrs = 'zh-Hant';
+                                            codigoIdioma = 'Hant';
+                                            trs ();
+                                break;
+
+                                // caso idioma " GRIEGO "
+                                case "griego":
+                                case "greco" :
+    
+                                    idiomaTrs = 'el';
+                                    codigoIdioma = 'Grek';
+                                    trs ();
+
+                                break;
+
+                                //caso idioma " RUSO "
+                                case "ruso":
+                    
+                                    idiomaTrs = 'ru';
+                                    codigoIdioma = 'Cyrl';
+                                    trs ();
+                                
+                                break;
+                                
+                                // caso idioma " UCRANIO "
+                                case "ucranio":
+                                case "ucraniano" :
+                            
+                                    idiomaTrs = 'uk';
+                                    codigoIdioma = 'Cyrl';
+                                    trs ();
+
+                                break;
+
+                                default :
+                                console.log("EL IDIOMA NO ESTA SOPORTADO POR EL PROGRAMA, PRUEBA SOLO TRADUCIENDO");
+                            }
+
+
+                    }
+    break;
 
    default :
    console.log ( "NO LOGRO COMPRENDERTE");
 }
+
+
+
+
+
+// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA MAS QUE ESO 
+// GUARDAMOS TODO EL PROCESO DE TRADUCCION DE LA PRIMERA PERSON AN EUNA FUNCION PARA ASI TENERLA EN UN AMBITO GLOBAL 
+                // Y DESPUES UTILIZARLA EN TODOS LOS CASO DE TODOS LOS IDIOMAS se hara lomismo con la segunda funcion
+
+function traductor( callback){  // utilizo un CALLBACK para controlar la asincronia y evitar que una funcion se ejecute mientrs la otra se esta ejeutando
+    //esta variable GUARDARA las palabras que la persona quiere decir
+    var usuario1 = prompt("ESCRIBE: ") ;
+    if(usuario1.toLowerCase() == "cerrar chat" || usuario1.toLowerCase()== "desactivar chat" ){
+        console.log( "CHAT DESACTIVADO, gracias por usar chat inteligente")
+    }
+    else{
+    //esta variable guardara  la respuesta DE LA PERSONA1 En el idioma de la persona2
+    var traUserEs = "";
+    //SE GUARDAN LOS DATO ES DECIR LAS PALABRAS DE LA PERSONA DE HABLA HISPANA
+    var  datos  =  [ { "Text" : usuario1 } ] ;
+    
+    // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
+    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to='+idioma ;
+
+        // Con axios realizamos la petición POST
+     axios.post (  direccion ,  datos , {
+                        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
+                        headers : {
+                         // Valor de la llave del servicio ( la llave es la Luis XD )
+                        'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
+                        // La región donde se encuentra el servicio
+                        'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
+                        'Content-Type' : 'application / json'  
+                         }
+                        } )
+                        // Accedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
+                        .then (  respuesta  =>   {  
+                        //guardamos el resultado en a variable antes declarada
+                        traUserEs =  respuesta.data[0].translations[0].text  
+                             console.log(resPalabraIdea + traUserEs) ;
+                            callback();               
+                            
+                         } )
+                        // cachamos el error en caso de haberlo
+                        .catch (  error  =>  consola.log (  error  ) ) ;
+    
+                        }}
+    //Guardamos el proceso de traduccion en una funcion global y declararla en cuaquier momento             
+    function traductor2(){
+    // luego el usuario 2 escribe en su idioma
+    var usuario2 = prompt(palabraIdea + ": ");
+    //esta variable guardara  la respuesta
+    var traUser2 = "" ;
+
+
+    var datos =  [ { "Text" : usuario2 } ] ;
+    // Guardamos la dirección del aa servicio (endpoint, punto de acceso) en una variable
+    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=es' ;
+
+    // Con axios realizamos la petición POST
+    axios . post (  direccion ,  datos  , {
+        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
+        headers : {
+            // Valor de la llave del servicio ( la llave es la Luis XD )
+            'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
+            // La región donde se encuentra el servicio
+            'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
+            'Content-Type' : 'application / json'  
+            }
+            } )
+            // Accedemos al atributo que contiene el texto traducido
+            .then (  respuesta  =>   { 
+            traUser2 =   respuesta.data[0].translations[0].text  
+            console.log( "  DIJO: " + traUser2);
+            traductor(traductor2);
+             } )
+            // cachamos el error en caso de haberlo
+            .catch (  error  =>  console.log (  error  ) ) ;
+            }           
+// PAR ACTIVAR EL CHAT INTELIGENTE SE DEBE ESCRIBIR EN CONSOLA "CHAT INTELIGENTE" , NADA  MAS QUE ESO 
+
+
+
+
+// PARA EJECUTAR LA FUNCIONALIDAD DE TRADUCIR TEXTO SE DEBE ESCRIBIR EN CONSOLA "TRADUCCION DE TEXTO"
+// LA PETICION A TRADUCCION QUEDARA GUARDADA EN UNA FUNCION LA CUAL ESTARA DECLARADA EN UN AMBITO GLOBAL PARA SER USADA EN EL MOMENTO 
+// QUE SEA NECESARIA , Y ES LA DE CONTINUACION:
+
+function traducir(){
+    
+    
+    //esta variable guardara  la respuesta
+    var traduccion = "" ;
+
+
+    var datos =  [ { "Text" : textoTraducir } ] ;
+    // Guardamos la dirección del aa servicio (endpoint, punto de acceso) en una variable
+    var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to='+ idiomaTexto ;
+
+    // Con axios realizamos la petición POST
+    axios . post (  direccion ,  datos  , {
+        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
+        headers : {
+            // Valor de la llave del servicio ( la llave es la Luis XD )
+            'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
+            // La región donde se encuentra el servicio
+            'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
+            'Content-Type' : 'application / json'  
+            }
+            } )
+            // Accedemos al atributo que contiene el texto traducido
+            .then (  respuesta  =>   { 
+            traduccion =   respuesta.data[0].translations[0].text 
+            console.log(" EL TEXTO QUE ME PROPORCIONASTES SE TRADUCE A LO SIGUIENTE: ")
+            console.log("          " + traduccion);
+            
+             } )
+            // cachamos el error en caso de haberlo
+            .catch (  error  =>  console.log (  error  ) ) ;
+            };
+// FIN DE LA FUNCION TRADUCCION
+
+
+// FUNCION TRANSLITERAR Y TRADUCIR
+
+function tyt (){
+    var  datos  =  [ { "Text" : textoTra } ] ;
+
+     
+            // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
+            var  direccion  =  'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=' + idiomaTra +'&toScript=latn'  ;
+        
+                // Con axios realizamos la petición POST
+              axios.post (  direccion ,  datos ,  {
+                                // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
+                                headers : {
+                                 // Valor de la llave del servicio ( la llave es la Luis XD )
+                                'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
+                                // La región donde se encuentra el servicio
+                                'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
+                                'Content-Type' : 'application / json'  
+                                 }
+                                } )
+                                // Aaccedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
+                                .then (  respuesta  => {
+                                     transText = respuesta.data[0].translations[0].transliteration.text;
+                                      tradText =  respuesta.data[0].translations[0].text;
+                                     console.log("LA TRADUCCION ES: "+ tradText);
+                                      console.log ( "LA TRANSLITERACION ES: " + transText  );
+                                })
+                                // cachamos el error en caso de haberlo
+                                .catch (  error  =>  console.log (  error  ) ) ;
+};
+// FIN DE LA FUNCION DE TRANSLITERACION Y TRADUCCION
+
+
+//FUNCION TRANSLITERAR
+function trs(){                   
+                                    var  datos  =  [ { "Text" : textoTransliteracion } ] ;
+       
+                                    // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
+                                    var  direccion  =  'https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0&language='+ idiomaTrs + '&fromScript=' + codigoIdioma + '&toScript=latn'  
+                                
+                                        // Con axios realizamos la petición POST
+                                      axios.post (  direccion ,  datos ,  {
+                                                        // Dentro de estos atributos debemos definir el atributo de la llave y el tipo de info que se mandará
+                                                        headers : {
+                                                         // Valor de la llave del servicio ( la llave es la Luis XD )
+                                                        'Ocp-Apim-Subscription-Key' : '58f9f4075c9c46bca61a78cfc71a45b6' ,
+                                                        // La región donde se encuentra el servicio
+                                                        'Ocp-Apim-Subscription-Region' : 'southcentralus' ,
+                                                        'Content-Type' : 'application / json'  
+                                                         }
+                                                        } )
+                                                        // Aaccedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
+                                                        .then (  respuesta  => {
+                                                             transliteracion = respuesta.data[0].text;                                                          
+                                                              console.log ( "LA TRANSLITERACION ES: " + transliteracion  );
+                                                        })
+                                                        // cachamos el error en caso de haberlo
+                                                        .catch (  error  =>  console.log (  error  ) ) ;
+                                                    }
+// FIN FUNCION TRANSLITERAR
