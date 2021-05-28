@@ -4,8 +4,14 @@ const axios = require ('axios');
 // FRASES DE BIENENIDA
 console.log( " HOLA, SOY TU ASISTENTE DE TRADUCCION PERSONAL ");
 console.log( " ¿EN QUE PUEDO AYUDARTE? ");
+
 // SE PIDE INGRESAR LA PETICION DEL USUARIO QUE SE COMPARARA EN E SWITCH
 var ingreso = prompt("");
+all (ingreso);
+
+
+function all (ingreso){
+
 // TRANSFORMAMOS A MAYUSCULAS PARA REDUCIR EL NUMERO DE CASOS POSIBLES, YA QUE TODOS LOS CASOS ESTARAN EN  MINUSCULAS
 ingreso = ingreso.toLowerCase();
 
@@ -47,7 +53,7 @@ switch( ingreso){
                 
                 
                             //llamamos a la funcion uno "traductor" y entregandole como callback la funcion 2 "traductor2"
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
                 
                 
@@ -59,7 +65,7 @@ switch( ingreso){
                     palabraIdea = "  SCHREIBEN: ";
                     resPalabraIdea = "HAT GESAGT: ";
     
-                                traductor(traductor2);
+                                traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                     break
 
                 // caso idioma " CANADIENSE O FRANCES CANADIENSE", LOS SEPARE PORQQUE SI ALGUIEN BUSCA FRANCES BUENO SE HA REFERIR al de FRANCIA
@@ -73,21 +79,21 @@ switch( ingreso){
                     palabraIdea = "DICÉCRIT: ";
                     resPalabraIdea = "HA DCHO: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " CHINO ( SIMPLIFICADO O TRADICIONAL ), SE UTILIZA EL IF PORQUE NO ESPECIFICA QUE TIPO DE CHINO "
                 case "chino":
                                     
                         var typeCh = prompt("¿chino tradicional o simplificado? (Espesifica el tipo a continuacion): ");
-                        typeCh = typeCh.toLowerCase()
+                        typeCh = typeCh.toLowerCase();
                         if (typeCh == "simplificado"){
                         
                         idioma = 'zh-Hans' ;
                         palabraIdea = "  写: ";
                         resPalabraIdea = "他说: ";
         
-                                    traductor(traductor2);
+                                    traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                         
                         }else if (typeCh == "tradicional" ){
                             
@@ -95,7 +101,7 @@ switch( ingreso){
                         palabraIdea = "  寫： ";
                         resPalabraIdea = "他說：";
                                      
-                                    traductor(traductor2);
+                                    traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                         }
 
                 // caso idioma "CHINO SIMPLIFCADO "
@@ -107,7 +113,7 @@ switch( ingreso){
                 palabraIdea = "  写: ";
                 resPalabraIdea = "他说: ";
     
-                                traductor(traductor2);
+                                traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
                 
                 // caso idioma "CHINO tradicional "
@@ -119,7 +125,7 @@ switch( ingreso){
                 palabraIdea = "  寫： ";
                 resPalabraIdea = "他說：";
                                  
-                                traductor(traductor2);
+                                traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " CROATA "
@@ -129,7 +135,7 @@ switch( ingreso){
                 palabraIdea = "  PISATI: ";
                 resPalabraIdea = "JE REKAO: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
                 
                 // caso idioma " FRANCES "
@@ -140,7 +146,7 @@ switch( ingreso){
                 palabraIdea = "  ÉCRIVE: ";
                 resPalabraIdea = "IL A DIT: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " GRIEGO "
@@ -151,7 +157,7 @@ switch( ingreso){
                 palabraIdea = "  ΓΡΑΦΩ: ";
                 resPalabraIdea = "ΕΧΕΙ ΕΞΕΤΑΣΗ: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " HOLANDES "
@@ -162,7 +168,7 @@ switch( ingreso){
                 palabraIdea = "  SCHRIJF: ";
                 resPalabraIdea = "HIJ ZEI: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " ITALIANO"
@@ -173,7 +179,7 @@ switch( ingreso){
                 palabraIdea = "  SCRIVI: ";
                 resPalabraIdea = "HA DETTO: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " NORUEGO "
@@ -183,7 +189,7 @@ switch( ingreso){
                 palabraIdea = "  SKRIVE: ";
                 resPalabraIdea = "HAR SAGT: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " PORTUGUES ( brazil ) "
@@ -198,7 +204,7 @@ switch( ingreso){
                             palabraIdea = "  ESCREVE: ";
                             resPalabraIdea = "DISSE: ";
         
-                                    traductor(traductor2);
+                                    traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                         
                         }else if (typePt == "portugal" ){
                             
@@ -206,7 +212,7 @@ switch( ingreso){
                             palabraIdea = "  ESCREVE: ";
                             resPalabraIdea = "DISSE: ";
                                      
-                                    traductor(traductor2);
+                                    traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                         }
                 break;
 
@@ -221,7 +227,7 @@ switch( ingreso){
                     palabraIdea = "  ESCREVE: ";
                     resPalabraIdea = "DISSE: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
                 
                 case "portugues portugal":
@@ -235,7 +241,7 @@ switch( ingreso){
                     palabraIdea = "  ESCREVE: ";
                     resPalabraIdea = "DISSE: ";
     
-                                traductor(traductor2);
+                                traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                     break;
 
                 // caso idioma " RUSO "
@@ -245,7 +251,7 @@ switch( ingreso){
                     palabraIdea = "  НАПИСАТЬ: ";
                     resPalabraIdea = "ОН СКАЗАЛ: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " UCRANIO "
@@ -256,7 +262,7 @@ switch( ingreso){
                     palabraIdea = "  НАПИСАТИ: ";
                     resPalabraIdea = "СКАЗАЛ: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
                 // caso idioma " SUECO "
@@ -266,7 +272,7 @@ switch( ingreso){
                 palabraIdea = "  ESCRIVER: ";
                 resPalabraIdea = "HAR SAGT: ";
 
-                            traductor(traductor2);
+                            traductor( idioma ,palabraIdea, resPalabraIdea , traductor2);
                 break;
 
 
@@ -275,7 +281,16 @@ switch( ingreso){
                 default:
                 console.log("EL IDIOMA NO ESTA SOPORTADO EN ESTE PROGRAMA ");
                 
+                console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+                ingreso = prompt(" ");
+                ingreso.toLowerCase();
+                if(ingreso == "chao"){
+                console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+                }else{
+                all(ingreso);
                 }
+                
+            }
         
    
    
@@ -288,14 +303,14 @@ switch( ingreso){
     console.log("CLARO!, ESCRIBE EL TEXTO A TRADUCIR")// se pide el texto que se va a tarucir
     var textoTraducir = prompt( "TEXTO: ");// se guarda el texto en una variable
     var idiomaTexto = prompt( "A QUE IDIOMA DESEAS TRADUCIR EL TEXTO: " );// se guarad el idioma, 
-    idiomaTexto = idiomaTexto.toLowerCase     //lo pasamos a minusculas para luego introducirlo como parametro al switch y compararlo
+    idiomaTexto = idiomaTexto.toLowerCase();    //lo pasamos a minusculas para luego introducirlo como parametro al switch y compararlo
          
                 switch(idiomaTexto){
                     
                     case "aleman":
                     case "alemán":
                                 idiomaTexto = 'de' ;
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
                     
                     // caso idioma canadiense o frances de canada
@@ -305,24 +320,24 @@ switch( ingreso){
                     case "frances canadiense" :
                     case "francés canadiense" :
                                 idiomaTexto = 'fr-ca' ;
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " CHINO ( SIMPLIFICADO O TRADICIONAL ), SE UTILIZA EL IF PORQUE NO ESPECIFICA QUE TIPO DE CHINO "
                     case "chino":
                                     
                     var tipoCh = prompt("¿chino tradicional o simplificado? (Espesifica el tipo a continuacion): ");
-                    tipoCh = tipoCh.toLowerCase()
+                    tipoCh = tipoCh.toLowerCase();
                         
                         if (tipoCh == "simplificado"){
                     
                                 idiomaTexto = 'zh-Hans';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     
                         }else if (ttipoCh == "tradicional" ){
                         
                                 idiomaTexto = 'zh-Hant';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                         }
                                
                     break;
@@ -333,7 +348,7 @@ switch( ingreso){
                     case "chino (simplificado)" :
     
                                 idiomaTexto = 'zh-Hans';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma "CHINO tradicional "
@@ -342,14 +357,14 @@ switch( ingreso){
                     case "chino (tradicional)" :
                         
                                 idiomaTexto = 'zh-Hant';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " CROATA "
                     case "croata": 
                 
                                 idiomaTexto = 'hr';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " FRANCES "
@@ -357,7 +372,7 @@ switch( ingreso){
                     case "frances" :
                     
                                 idiomaTexto = 'fr' ;
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " GRIEGO "
@@ -365,7 +380,7 @@ switch( ingreso){
                     case "greco" :
 
                                 idiomaTexto = 'el';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " HOLANDES "
@@ -373,7 +388,7 @@ switch( ingreso){
                     case "holandés" :
                     
                                 idiomaTexto = 'nl';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " ITALIANO"
@@ -381,14 +396,14 @@ switch( ingreso){
                     case "italino" :
     
                                 idiomaTexto = 'it';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " NORUEGO "
                 case "noruego":
 
                                 idiomaTexto = 'nb';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " PORTUGUES ( brazil ) "
@@ -396,17 +411,17 @@ switch( ingreso){
                     case "portugués":
 
                         var tipoPt = prompt("¿Portugués de Brazil o Portugal? (Espesifica el país a continuacion) :");
-                        tipoPt = tipoPt.toLowerCase()
+                        tipoPt = tipoPt.toLowerCase();
                             
                             if (tipoPt == "brazil"){
                         
                                     idiomaTexto = 'pt';
-                                    traducir ();
+                                    traducir (textoTraducir , idiomaTexto);
                         
                             }else if (tipoPt == "portugal" ){
                             
                                     idiomaTexto = 'pt-pt';
-                                    traducir ();
+                                    traducir (textoTraducir , idiomaTexto);
                             }
                     break;
 
@@ -419,7 +434,7 @@ switch( ingreso){
                     case  "portugués(brazil)" :
                                  
                                 idiomaTexto = 'pt';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
                     
                     // caso especificado de Portugues de Portugal)
@@ -431,14 +446,14 @@ switch( ingreso){
                     case  "portugués(portugal)" :
                                             
                                 idiomaTexto = 'pt-pt';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     //caso idioma " RUSO "
                     case "ruso":
                     
                                 idiomaTexto = 'ru';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     
                     break;
 
@@ -447,18 +462,26 @@ switch( ingreso){
                     case "ucraniano" :
                         
                                 idiomaTexto = 'uk';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     // caso idioma " SUECO "
                     case "sueco":
                 
                                 idiomaTexto = 'sv';
-                                traducir ();
+                                traducir (textoTraducir , idiomaTexto);
                     break;
 
                     default:
-                        console.log("EL IDIOMA NO ESTA SOPORTADO POR ESTE PROGRAMA")
+                        console.log("EL IDIOMA NO ESTA SOPORTADO POR ESTE PROGRAMA");
+                        console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+                        ingreso = prompt(" ");
+                        ingreso.toLowerCase();
+                        if(ingreso == "chao"){
+                        console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+                        }else{
+                        all(ingreso);
+                        }
                     
 
                     }
@@ -489,12 +512,12 @@ switch( ingreso){
                                     if (tipeCh == "simplificado"){
                                 
                                             idiomaTra = 'zh-Hans';
-                                            tyt ();
+                                            tyt (textoTra , idiomaTra);
                                 
                                     }else if (tipeCh == "tradicional" ){
                                     
                                             idiomaTra = 'zh-Hant';
-                                            tyt ();
+                                            tyt (textoTra , idiomaTra);
                                     }
                                            
                                 break;
@@ -505,7 +528,7 @@ switch( ingreso){
                                 case "chino (simplificado)" :
                 
                                             idiomaTra = 'zh-Hans';
-                                            tyt ();
+                                            tyt (textoTra , idiomaTra);
                                 break;
             
                                 // caso idioma "CHINO tradicional "
@@ -514,7 +537,7 @@ switch( ingreso){
                                 case "chino (tradicional)" :
                                     
                                             idiomaTra = 'zh-Hant';
-                                            tyt ();
+                                            tyt (textoTra , idiomaTra);
                                 break;
 
                                 // caso idioma " GRIEGO "
@@ -522,14 +545,14 @@ switch( ingreso){
                                 case "greco" :
     
                                     idiomaTra = 'el';
-                                    tyt ();
+                                    tyt (textoTra , idiomaTra);
                                 break;
 
                                 //caso idioma " RUSO "
                                 case "ruso":
                     
                                     idiomaTra = 'ru';
-                                    tyt ();
+                                    tyt (textoTra , idiomaTra);
                                 
                                 break;
                                 
@@ -538,12 +561,20 @@ switch( ingreso){
                                 case "ucraniano" :
                             
                                     idiomaTra = 'uk';
-                                    tyt ();
+                                    tyt (textoTra , idiomaTra);
                                 
                                 break;
 
                                 default :
                                 console.log("EL IDIOMA NO ESTA SOPORTADO POR EL PROGRAMA, PRUEBA SOLO TRADUCIENDO");
+                                console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+                                ingreso = prompt(" ");
+                                ingreso.toLowerCase();
+                                if(ingreso == "chao"){
+                                console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+                                }else{
+                                all(ingreso);
+                                }
                                 
 
 
@@ -566,13 +597,13 @@ switch( ingreso){
                                 
                                             idiomaTrs = 'Hans';
                                             codigoIdioma = 'Hans';
-                                            trs ();
+                                            trs (textoTransliteracion , idiomaTrs);
                                 
                                     }else if (tipeCh == "tradicional" ){
                                     
                                             idiomaTrs = 'Hant';
                                             codigoIdioma = 'Hant';
-                                            trs ();
+                                            trs (textoTransliteracion , idiomaTrs);
                                     }
                                            
                                 break;
@@ -584,7 +615,7 @@ switch( ingreso){
                 
                                             idiomaTrs = 'zh-Hans';
                                             codigoIdioma = 'Hans';
-                                            trs ();
+                                            trs (textoTransliteracion , idiomaTrs);
                                 break;
             
                                 // caso idioma "CHINO tradicional "
@@ -594,7 +625,7 @@ switch( ingreso){
                                     
                                             idiomaTrs = 'zh-Hant';
                                             codigoIdioma = 'Hant';
-                                            trs ();
+                                            trs (textoTransliteracion , idiomaTrs);
                                 break;
 
                                 // caso idioma " GRIEGO "
@@ -603,7 +634,7 @@ switch( ingreso){
     
                                     idiomaTrs = 'el';
                                     codigoIdioma = 'Grek';
-                                    trs ();
+                                    trs (textoTransliteracion , idiomaTrs);
 
                                 break;
 
@@ -612,7 +643,7 @@ switch( ingreso){
                     
                                     idiomaTrs = 'ru';
                                     codigoIdioma = 'Cyrl';
-                                    trs ();
+                                    trs (textoTransliteracion , idiomaTrs);
                                 
                                 break;
                                 
@@ -622,12 +653,22 @@ switch( ingreso){
                             
                                     idiomaTrs = 'uk';
                                     codigoIdioma = 'Cyrl';
-                                    trs ();
+                                    trs (textoTransliteracion , idiomaTrs);
 
                                 break;
 
                                 default :
                                 console.log("EL IDIOMA NO ESTA SOPORTADO POR EL PROGRAMA, PRUEBA SOLO TRADUCIENDO");
+                                
+                                console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+                                ingreso = prompt(" ");
+                                ingreso.toLowerCase();
+                                if(ingreso == "chao"){
+                                console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+                                }else{
+                                all(ingreso);
+                                }
+                                
                             }
 
 
@@ -635,9 +676,19 @@ switch( ingreso){
     break;
 
    default :
-   console.log ( "NO LOGRO COMPRENDERTE");
+   console.log ( "NO LOGRO COMPRENDERTE, REVISA TU ORTOGRAFIA");
+   console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+   ingreso = prompt(" ");
+   ingreso.toLowerCase();
+   if(ingreso == "chao"){
+       console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+   }else{
+       all(ingreso);
+   }
+
 }
 
+}
 
 
 
@@ -646,11 +697,20 @@ switch( ingreso){
 // GUARDAMOS TODO EL PROCESO DE TRADUCCION DE LA PRIMERA PERSON AN EUNA FUNCION PARA ASI TENERLA EN UN AMBITO GLOBAL 
                 // Y DESPUES UTILIZARLA EN TODOS LOS CASO DE TODOS LOS IDIOMAS se hara lomismo con la segunda funcion
 
-function traductor( callback){  // utilizo un CALLBACK para controlar la asincronia y evitar que una funcion se ejecute mientrs la otra se esta ejeutando
-    //esta variable GUARDARA las palabras que la persona quiere decir
+function traductor( idioma , palabraIdea, resPalabraIdea , callback){  // utilizo un CALLBACK para controlar la asincronia y evitar que una funcion se ejecute mientrs la otra se esta ejeutando
+    //esta variable GUARDARA las palabras que la persona quiere decir consola
     var usuario1 = prompt("ESCRIBE: ") ;
-    if(usuario1.toLowerCase() == "cerrar chat" || usuario1.toLowerCase()== "desactivar chat" ){
-        console.log( "CHAT DESACTIVADO, gracias por usar chat inteligente")
+    if(usuario1.toLowerCase() == "cerrar chat" || usuario1.toLowerCase() == "desactivar chat" ){
+        console.log( "CHAT DESACTIVADO, gracias por usar chat inteligente");
+        console.log(" TE PUEDO AYUDAR EN ALGO MAS?, SI ES ASI ESCRIBE EL NOMBRE DE LA FUNCIONALIDAD, CASO CONTRARIO SOLO DI (CHAO)");
+        ingreso = prompt(" ");
+        ingreso.toLowerCase();
+        if(ingreso == "chao"){
+            console.log(" CHAO!!! RECUERDA QUE SIEMPRE ESTARE AQUI PARA TI!");
+        }else{
+            all(ingreso);
+        }
+        
     }
     else{
     //esta variable guardara  la respuesta DE LA PERSONA1 En el idioma de la persona2
@@ -677,17 +737,18 @@ function traductor( callback){  // utilizo un CALLBACK para controlar la asincro
                         //guardamos el resultado en a variable antes declarada
                         traUserEs =  respuesta.data[0].translations[0].text  
                              console.log(resPalabraIdea + traUserEs) ;
-                            callback();               
+                             palabraIdea = palabraIdea.toUpperCase();
+                            callback(palabraIdea);               
                             
                          } )
                         // cachamos el error en caso de haberlo
-                        .catch (  error  =>  consola.log (  error  ) ) ;
+                        .catch (  error  =>  console.log (  error  ) ) ;
     
                         }}
     //Guardamos el proceso de traduccion en una funcion global y declararla en cuaquier momento             
-    function traductor2(){
+    function traductor2(palabraIdea){
     // luego el usuario 2 escribe en su idioma
-    var usuario2 = prompt(palabraIdea + ": ");
+    var usuario2 = prompt(palabraIdea );
     //esta variable guardara  la respuesta
     var traUser2 = "" ;
 
@@ -707,7 +768,7 @@ function traductor( callback){  // utilizo un CALLBACK para controlar la asincro
             'Content-Type' : 'application / json'  
             }
             } )
-            // Accedemos al atributo que contiene el texto traducido
+            // Accedemos al atributo que contiene el texto traducido consola
             .then (  respuesta  =>   { 
             traUser2 =   respuesta.data[0].translations[0].text  
             console.log( "  DIJO: " + traUser2);
@@ -725,7 +786,7 @@ function traductor( callback){  // utilizo un CALLBACK para controlar la asincro
 // LA PETICION A TRADUCCION QUEDARA GUARDADA EN UNA FUNCION LA CUAL ESTARA DECLARADA EN UN AMBITO GLOBAL PARA SER USADA EN EL MOMENTO 
 // QUE SEA NECESARIA , Y ES LA DE CONTINUACION:
 
-function traducir(){
+function traducir(textoTraducir , idiomaTexto){
     
     
     //esta variable guardara  la respuesta
@@ -752,6 +813,16 @@ function traducir(){
             traduccion =   respuesta.data[0].translations[0].text 
             console.log(" EL TEXTO QUE ME PROPORCIONASTES SE TRADUCE A LO SIGUIENTE: ")
             console.log("          " + traduccion);
+            console.log("");
+            console.log("DESEAS SEGUIR TRADUCIENDO? SI ES ASI ESCRIBE EL TEXTO; CASO CONTRARIO ESCRIBE (SALIR)");
+                                      textoTraducir = prompt(" ");
+                                      textoTraducir = textoTraducir.toLowerCase();
+                                      if(textoTraducir == "salir"){
+                                          console.log("GRACIAS POR USAR EL SERVICIO DE TRADUCCIÓN");
+
+                                      }else{
+                                          traducir ();
+                                      }
             
              } )
             // cachamos el error en caso de haberlo
@@ -762,7 +833,7 @@ function traducir(){
 
 // FUNCION TRANSLITERAR Y TRADUCIR
 
-function tyt (){
+function tyt (textoTra , idiomaTra){
     var  datos  =  [ { "Text" : textoTra } ] ;
 
      
@@ -786,6 +857,15 @@ function tyt (){
                                       tradText =  respuesta.data[0].translations[0].text;
                                      console.log("LA TRADUCCION ES: "+ tradText);
                                       console.log ( "LA TRANSLITERACION ES: " + transText  );
+                                      console.log("DESEAS SEGUIR TRANSLITERANDO? SI ES ASI ESCRIBE EL TEXTO; CASO CONTRARIO ESCRIBE (SALIR)");
+                                      textoTra = prompt(" ");
+                                      textoTra = textoTra.toLowerCase();
+                                      if(textoTra == "salir"){
+                                          console.log("GRACIAS POR USAR EL SERVICIO DE TRADUCCIÓN Y TRANSLITERACIÓN");
+
+                                      }else{
+                                          tyt (textoTra , idiomaTra);
+                                      };
                                 })
                                 // cachamos el error en caso de haberlo
                                 .catch (  error  =>  console.log (  error  ) ) ;
@@ -794,7 +874,7 @@ function tyt (){
 
 
 //FUNCION TRANSLITERAR
-function trs(){                   
+function trs(textoTransliteracion , idiomaTrs){                   
                                     var  datos  =  [ { "Text" : textoTransliteracion } ] ;
        
                                     // Guardamos la dirección del servicio (endpoint, punto de acceso) en una variable
@@ -813,8 +893,20 @@ function trs(){
                                                         } )
                                                         // Aaccedemos al atributo que contiene el texto traducido antes de trasuser va el cal back
                                                         .then (  respuesta  => {
-                                                             transliteracion = respuesta.data[0].text;                                                          
-                                                              console.log ( "LA TRANSLITERACION ES: " + transliteracion  );
+                                                            transliteracion = respuesta.data[0].text;                                                          
+                                                            console.log ( "LA TRANSLITERACION ES: " + transliteracion  );
+                                                            textoTransliteracion = textoTransliteracion.toLowerCase();
+
+
+                                                            console.log("DESEAS SEGUIR TRANSLITERANDO? SI ES ASI ESCRIBE EL TEXTO; CASO CONTRARIO ESCRIBE (SALIR)");
+                                                            textoTrasliteracion = prompt(" ");
+                                                            textoTrasliteracion = textoTrasliteracion.toLowerCase();
+                                                            if(textoTransliteracion == "salir"){
+                                                            console.log("GRACIAS POR USAR EL SERVICIO DE TRANSLITERACION");
+
+                                                            }else{
+                                                            trs (textoTransliteracion , idiomaTrs);
+                                                            };
                                                         })
                                                         // cachamos el error en caso de haberlo
                                                         .catch (  error  =>  console.log (  error  ) ) ;
